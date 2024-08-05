@@ -18,9 +18,27 @@ function maxSumSubarray(nums, k) {
     return maxSum;
 }
 
+function minSubArray(s, nums) {
+    let right = 0;
+    let left = 0;
+    let minLength = Infinity;
+    let windowSum = 0;
+    for(let right = 0; right < nums.length; right++) {
+        windowSum += nums[right];
+        while(windowSum >= sum) {
+            minLength = Math.min(minLength, (right - left) + 1);
+            windowSum -= nums[left]
+            left++;
+        }
+    }
+    return minLength === Infinity ? 0 : minLength;
+}
+
 
 
 const num = [1, 4, 2, 10, 23, 3, 1, 0, 20];
 const k = 4;
 
 console.log("maxSubArray :", maxSumSubarray(num, k));
+
+
